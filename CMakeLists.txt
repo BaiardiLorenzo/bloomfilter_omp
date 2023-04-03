@@ -3,4 +3,4 @@ project(bloomfilter_omp)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(bloomfilter_omp main.cpp)
+add_executable(bloomfilter_omp main.cpp BloomFilter.cpp BloomFilter.h EmailGenerator.cpp EmailGenerator.h)
