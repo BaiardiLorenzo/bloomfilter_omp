@@ -5,19 +5,21 @@
 #ifndef BLOOMFILTER_OMP_BLOOMFILTER_H
 #define BLOOMFILTER_OMP_BLOOMFILTER_H
 
+#include <iostream>
 
-#include <bitset>
+#define FILTER_SIZE 1000
 
 class BloomFilter {
 public:
-    BloomFilter(int n);
-    bool filter_email();
-    bool filter_email2();
+    BloomFilter(std::string spamEmails[], int size);
+
+    bool checkSpamEmail(std::string email);
 
 private:
-    double fpr = 0.01;
-    int size;
-    std::bitset<10> array;
+    bool bitarray[FILTER_SIZE] = {false};
+
+    void setSpamEmail(std::string email);
+
 };
 
 
