@@ -9,23 +9,24 @@
 #include <string>
 #include <iostream>
 
+#define MAX_USER_LENGHT 11
+#define N_DOMAINS 5
+#define N_URLS 3
+
 class EmailGenerator {
 
 public:
     std::string generateEmail();
 
 private:
-    constexpr static const char validCharacters[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" "abcdefghijklmnopqrstuvwxyz";
-    constexpr static const char validaNumbers[] = "0123456789";
-    std::string urls[3] = {"com", "net", "org"};
+    constexpr static const char validCharacters[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" "abcdefghijklmnopqrstuvwxyz" "0123456789";
     int lenValidCharacter = sizeof(validCharacters) - 1;
-    int lenValidNumbers = sizeof(validaNumbers) - 1;
+    std::string domains[N_DOMAINS] = {"@gmail", "@yahoo", "@hotmail", "@libero", "@icloud"};
+    std::string urls[N_URLS] = {".com", ".net", ".org"};
 
-    [[nodiscard]] std::string genUser(int n) const;
+    [[nodiscard]] std::string genUser() const;
 
-    [[nodiscard]] std::string genNum() const;
-
-    [[nodiscard]] std::string genProvider(int n) const;
+    [[nodiscard]] std::string genDomain() const;
 
     std::string genUrl();
 };
