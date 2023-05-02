@@ -7,17 +7,23 @@
 
 
 #include <bitset>
+#include <vector>
 
 class BloomFilter {
 public:
-    BloomFilter(int n);
-    bool filter_email();
-    bool filter_email2();
+    explicit BloomFilter(int n, const std::vector<std::string>& emails);
+    void filterAll(const std::vector<std::string>& emails);
+    bool filter(const std::string& email);
+
 
 private:
-    double fpr = 0.01;
     int size;
-    std::bitset<10> array;
+    std::vector<bool> array;
+    //@TODO std::vector<function> hashes;
+
+    void setup(const std::vector<std::string>& set);
+    void setHashes(int n);
+
 };
 
 
