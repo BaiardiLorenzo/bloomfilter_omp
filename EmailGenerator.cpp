@@ -6,7 +6,6 @@
 
 
 std::string EmailGenerator::generateEmail() {
-    std::srand(time(NULL));
     std::string email;
     email.append(genUser());
     email.append(genDomain());
