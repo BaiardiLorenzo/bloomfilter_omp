@@ -2,22 +2,23 @@
 // Created by loreb on 01/04/2023.
 //
 
+#include <cmath>
+#include <cassert>
 #include "BloomFilter.h"
+#include "MultiHashes.h"
 
-BloomFilter::BloomFilter(int n, const std::vector<std::string>& emails) : size(n), array(n, false){
-    //@TODO SET NUMBER OF HASHES
-    //@PYTHON numHashes = int((size / len(set)) * math.log(2))
-    //@TODO SET VECTOR OF HASHES FUNCTION
-    setHashes(0);
-    setup(emails);
+BloomFilter::BloomFilter(std::size_t n, const std::vector<std::string>& emails) : size(n), bits(n){
+    assert(size > 0);
+    this->numHashes = (size/emails.size()) * log(2);
+    setup(numHashes, emails);
 }
 
-void BloomFilter::setHashes(int n) {
-    //@TODO CREATE HASHES FUNCTION
-}
-
-void BloomFilter::setup(const std::vector<std::string>& spamEmails) {
-    //TODO SETUP BIT VECTOR
+void BloomFilter::setup(std::size_t numHashes, const std::vector<std::string>& emails) {
+    for(auto &email: emails){
+        MultiHashes mh(this->size, email);
+        for(std::size_t i=0;i<numHashes;i++)
+            this->bits[mh()] = true;
+    }
 }
 
 void BloomFilter::filterAll(const std::vector<std::string>& emails) {
@@ -26,14 +27,9 @@ void BloomFilter::filterAll(const std::vector<std::string>& emails) {
 }
 
 bool BloomFilter::filter(const std::string& email) {
-    /*
-       def filter(self, m):
-        for hashFun in self.hashes:
-            pos = hashFun(m) % len(self.array)
-            if self.array[pos] == 0:
-                return False
-        return True
-     */
+    MultiHashes mh(this->size, email);
+    for(std::size_t i=0;i<numHashes;i++)
+        if(!this->bits[mh()]) return false;
     return true;
 }
 
