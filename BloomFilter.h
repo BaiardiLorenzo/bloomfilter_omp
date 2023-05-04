@@ -11,17 +11,17 @@
 
 class BloomFilter {
 public:
-    explicit BloomFilter(std::size_t size, const std::vector<std::string>& emails);
-    void filterAll(const std::vector<std::string>& emails);
+    explicit BloomFilter(std::size_t size, std::string emails[], std::size_t nEmails);
+    void filterAll(std::string emails[], std::size_t nEmails);
     bool filter(const std::string& email);
 
 
 private:
     std::size_t size;
     std::size_t numHashes;
-    std::vector<bool> bits;
+    bool bits[];
 
-    void setup(std::size_t numHashes, const std::vector<std::string>& set);
+    void setup(std::size_t numHashes, std::string emails[], std::size_t nEmails);
 
 };
 

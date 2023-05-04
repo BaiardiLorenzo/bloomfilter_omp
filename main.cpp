@@ -9,10 +9,9 @@ int main() {
     EmailGenerator eg = EmailGenerator();
     for(auto & email : emails)
         email = eg.generateEmail();
-    //@TODO CHANGE STD::VECTOR TO ARRAY
-    BloomFilter bf = BloomFilter(10000, std::vector<std::string>{emails});
     std::string newProbablySpamEmail = eg.generateEmail();
+    BloomFilter bf = BloomFilter(1000, emails, N_MAILS);
     bool isSpam = bf.filter(newProbablySpamEmail);
     std::cout<<isSpam<<std::endl;
-     return 0;
+    return 0;
 }

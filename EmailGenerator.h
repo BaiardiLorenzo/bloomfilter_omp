@@ -9,7 +9,7 @@
 #include <string>
 #include <iostream>
 
-#define MAX_USER_LENGHT 11
+#define MAX_USER_LENGHT 15
 #define N_DOMAINS 5
 #define N_URLS 3
 
@@ -20,7 +20,7 @@ public:
 
 private:
     constexpr static const char validCharacters[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" "abcdefghijklmnopqrstuvwxyz" "0123456789";
-    int lenValidCharacter = sizeof(validCharacters) - 1;
+    const int lenValidCharacter = sizeof(validCharacters) - 1;
     std::string domains[N_DOMAINS] = {"@gmail", "@yahoo", "@hotmail", "@libero", "@icloud"};
     std::string urls[N_URLS] = {".com", ".net", ".org"};
 
