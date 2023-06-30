@@ -12,16 +12,16 @@
 class BloomFilter {
 public:
     explicit BloomFilter(std::size_t size, std::string emails[], std::size_t nEmails);
-    void filterAll(std::string emails[], std::size_t nEmails);
+    bool* filterAll(std::string emails[], std::size_t nEmails);
     bool filter(const std::string& email);
 
 
 private:
     std::size_t size;
     std::size_t numHashes;
-    bool bits[];
+    std::vector<bool> bitset;
 
-    void setup(std::size_t numHashes, std::string emails[], std::size_t nEmails);
+    void setup(std::string emails[], std::size_t nEmails);
 
 };
 
