@@ -1,7 +1,3 @@
-//
-// Created by loreb on 03/05/2023.
-//
-
 #include "MultiHashes.h"
 
 MultiHashes::MultiHashes(std::size_t size, const std::string &email):

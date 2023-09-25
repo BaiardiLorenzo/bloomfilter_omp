@@ -1,7 +1,3 @@
-//
-// Created by loreb on 03/05/2023.
-//
-
 #ifndef BLOOMFILTER_OMP_MULTIHASHES_H
 #define BLOOMFILTER_OMP_MULTIHASHES_H
 
