@@ -1,8 +1,6 @@
-
 #include <fstream>
 #include <vector>
 #include "BloomFilter.h"
-#include "BloomFilterPar.h"
 
 void importEmail(std::string emails[], std::size_t nEmails){
     std::ifstream infile;
