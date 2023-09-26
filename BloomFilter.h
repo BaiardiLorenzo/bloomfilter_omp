@@ -14,7 +14,7 @@ public:
     ~BloomFilter();
     int filterAll(std::string emails[], size_t nEmails);
     double setup(std::string emails[], std::size_t nEmails);
-    double setupPar(std::string emails[], std::size_t nEmails);
+    double parallelSetup(std::string emails[], std::size_t nEmails);
     void seeBits();
     void reset();
 

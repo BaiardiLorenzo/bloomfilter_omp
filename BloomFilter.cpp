@@ -26,7 +26,7 @@ double BloomFilter::setup(std::string emails[], std::size_t nEmails) {
     return time;
 }
 
-double BloomFilter::setupPar(std::string emails[], std::size_t nEmails) {
+double BloomFilter::parallelSetup(std::string emails[], std::size_t nEmails) {
     this->numHashes = calculateNumHashes(this->size, nEmails);
     double start = omp_get_wtime();
 #pragma omp parallel for default(none) shared(bits, emails) firstprivate(nEmails, numHashes)

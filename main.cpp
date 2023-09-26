@@ -77,7 +77,7 @@ int main() {
             //bf.seeBits();
 
             // TIME PARALLEL SETUP
-            double tPar = bf.setupPar(emails, test);
+            double tPar = bf.parallelSetup(emails, test);
 
             double speedUp = tSeq / tPar;
             printf("Speedup: %f\n", speedUp);
