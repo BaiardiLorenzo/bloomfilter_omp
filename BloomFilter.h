@@ -10,17 +10,21 @@
 
 class BloomFilter {
 public:
-    explicit BloomFilter(std::size_t size, std::string emails[], std::size_t nEmails);
+    explicit BloomFilter(std::size_t size);
     ~BloomFilter();
     void filterAll(std::string emails[], std::size_t nEmails);
+    void filterAllPar(std::string emails[], size_t nEmails);
     bool filter(const std::string& email);
+    double setup(std::string emails[], std::size_t nEmails);
+    double setupPar(std::string emails[], std::size_t nEmails);
+    void reset();
 
-protected:
+private:
     std::size_t size;
-    std::size_t numHashes;
+    std::size_t numHashes{};
     bool* bits;
 
-    void setup(std::size_t numHashes, std::string emails[], std::size_t nEmails);
+    static std::size_t calculateNumHashes(std::size_t n, std::size_t k);
 };
 
 
