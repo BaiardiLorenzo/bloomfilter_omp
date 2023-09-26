@@ -1,6 +1,5 @@
 #include "BloomFilter.h"
 
-
 BloomFilter::BloomFilter(std::size_t n) : size(n){
     assert(size > 0);
     this->bits = new bool[size];
@@ -41,22 +40,29 @@ double BloomFilter::setupPar(std::string emails[], std::size_t nEmails) {
     return time;
 }
 
-void BloomFilter::filterAll(std::string emails[], std::size_t nEmails) {
+int BloomFilter::filterAll(std::string emails[], size_t nEmails) {
+    int error = 0;
+#pragma omp parallel for default(none) shared(emails, error) firstprivate(nEmails)
     for(std::size_t i=0; i<nEmails; i++)
-        printf("Email valida: %b", filter(emails[i]));
-}
-
-void BloomFilter::filterAllPar(std::string *emails, std::size_t nEmails) {
-//#pragma omp parallel for default(none) shared(bits)
-    for(std::size_t i=0; i<nEmails; i++)
-        printf("Email valida: %b", filter(emails[i]));
+        if(filter(emails[i])) {
+            printf("Email ERROR VALID\n");
+            error++;
+        }
+    printf("\n");
+    return error;
 }
 
 bool BloomFilter::filter(const std::string& email) {
     MultiHashes mh(this->size, email);
     for(std::size_t i=0; i<numHashes; i++)
-        if(!this->bits[mh()]) return false;
-    return true;
+        if(!this->bits[mh()]) return false; // SPAM = 0
+    return true; // VALID = 1
+}
+
+void BloomFilter::seeBits() {
+    for(std::size_t i=0;i<1000;i++)
+        printf("%d", bits[i]);
+    printf("\n");
 }
 
 std::size_t BloomFilter::calculateNumHashes(std::size_t n, std::size_t k) {
@@ -66,6 +72,7 @@ std::size_t BloomFilter::calculateNumHashes(std::size_t n, std::size_t k) {
 BloomFilter::~BloomFilter() {
     delete[] this->bits;
 }
+
 
 
 
