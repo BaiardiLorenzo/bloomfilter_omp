@@ -1,6 +1,6 @@
+#include "BloomFilter.h"
 #include <fstream>
 #include <vector>
-#include "BloomFilter.h"
 
 #define TEST_PATH "../test.csv"
 #define EMAIL_PATH "../dataset/emails/emails_"
