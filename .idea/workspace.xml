@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="CMakePresetLoader">{
+  &quot;useNewFormat&quot;: true
+}</component>
+  <component name="CMakeReloadState">
+    <option name="reloaded" value="true" />
+  </component>
+  <component name="CMakeRunConfigurationManager">
+    <generated>
+      <config projectName="bloomfilter_omp" targetName="bloomfilter_omp" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="40d3acb8-c61c-46c1-9861-a28c92823b2b" name="Changes" comment="rework finished omp bloomfilter">
+      <change afterPath="$PROJECT_DIR$/src/multihashes/MultiHashes.h" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2Nuh3p39i3Ce96Kc1Lbp2pXsWfm" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/loreb/Documents/IntellijProjects/CLionProjects/bloomfilter_omp",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="Push.Settings">
+    <option name="SHOW_DETAILS_PANEL" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\loreb\Documents\IntellijProjects\CLionProjects\bloomfilter_omp" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\loreb\Documents\IntellijProjects\CLionProjects\bloomfilter_omp\src\multihashes" />
+      <recent name="C:\Users\loreb\Documents\IntellijProjects\CLionProjects\bloomfilter_omp\src\emailgenerator" />
+      <recent name="C:\Users\loreb\Documents\IntellijProjects\CLionProjects\bloomfilter_omp\src\bloomfilter" />
+      <recent name="C:\Users\loreb\Documents\IntellijProjects\CLionProjects\bloomfilter_omp" />
+    </key>
+  </component>
+  <component name="RunManager" selected="CMake Application.bloomfilter_omp">
+    <configuration default="true" type="BIBTEX_RUN_CONFIGURATION" factoryName="LaTeX configuration factory">
+      <texify-bibtex>
+        <compiler />
+        <compiler-path />
+        <compiler-arguments />
+        <envs />
+        <main-file>$APPLICATION_HOME_DIR$/jbr/bin</main-file>
+        <aux-dir>$APPLICATION_HOME_DIR$/jbr/bin</aux-dir>
+      </texify-bibtex>
+      <method v="2" />
+    </configuration>
+    <configuration name="bloomfilter_omp" type="CMakeListConfigurationType" factoryName="CMakeListConfigurationFactory" temporary="true">
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="bloomfilter_omp" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="bloomfilter_omp" TARGET_NAME="bloomfilter_omp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="bloomfilter_omp" RUN_TARGET_NAME="bloomfilter_omp">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="EXTERNAL_TOOL_RUN_CONFIGURATION" factoryName="LaTeX configuration factory">
+      <texify-external>
+        <program>PYTHONTEX</program>
+        <main-file />
+        <work-dir />
+      </texify-external>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="LATEX_RUN_CONFIGURATION" factoryName="LaTeX configuration factory">
+      <texify>
+        <compiler>PDFLATEX</compiler>
+        <compiler-path />
+        <sumatra-path />
+        <pdf-viewer>SUMATRA</pdf-viewer>
+        <viewer-command />
+        <compiler-arguments />
+        <envs />
+        <main-file />
+        <output-path>{projectDir}/out</output-path>
+        <auxil-path>{projectDir}/auxil</auxil-path>
+        <compile-twice>false</compile-twice>
+        <output-format>PDF</output-format>
+        <latex-distribution>TEXLIVE</latex-distribution>
+        <has-been-run>false</has-been-run>
+        <bib-run-config>[]</bib-run-config>
+        <makeindex-run-config>[]</makeindex-run-config>
+      </texify>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="MAKEINDEX_RUN_CONFIGURATION" factoryName="LaTeX configuration factory">
+      <texify-makeindex>
+        <program>MAKEINDEX</program>
+        <main-file />
+        <command-line-args />
+        <work-dir />
+      </texify-makeindex>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="CMake Application.bloomfilter_omp" />
+      <item itemvalue="CMake Debug.bloomfilter_omp" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="CMake Debug.bloomfilter_omp" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="40d3acb8-c61c-46c1-9861-a28c92823b2b" name="Changes" comment="" />
+      <created>1680519678429</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1680519678429</updated>
+      <workItem from="1680519679555" duration="52000" />
+      <workItem from="1680599257414" duration="2591000" />
+      <workItem from="1680630631564" duration="30000" />
+      <workItem from="1682513708795" duration="8000" />
+      <workItem from="1683030681986" duration="3013000" />
+      <workItem from="1683107034352" duration="2431000" />
+      <workItem from="1684406514343" duration="38000" />
+      <workItem from="1695593839369" duration="7000" />
+      <workItem from="1695646579143" duration="4795000" />
+      <workItem from="1695665578329" duration="2624000" />
+      <workItem from="1695671544935" duration="6843000" />
+      <workItem from="1695708513350" duration="3485000" />
+      <workItem from="1695713374312" duration="6369000" />
+      <workItem from="1695720259639" duration="1336000" />
+      <workItem from="1695746471129" duration="40000" />
+      <workItem from="1695750518488" duration="36000" />
+      <workItem from="1696248864707" duration="47000" />
+      <workItem from="1696248932614" duration="1041000" />
+      <workItem from="1696353495828" duration="61000" />
+      <workItem from="1696634307303" duration="168000" />
+      <workItem from="1696790558106" duration="672000" />
+      <workItem from="1696845293306" duration="11678000" />
+      <workItem from="1696859146856" duration="678000" />
+    </task>
+    <task id="LOCAL-00001" summary="generate EmailGenerator.cpp">
+      <created>1680601852398</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1680601852398</updated>
+    </task>
+    <task id="LOCAL-00002" summary="initialize BloomFilter class">
+      <created>1683033587517</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1683033587517</updated>
+    </task>
+    <task id="LOCAL-00003" summary="first class BloomFilter with MultipleHashes in std::vector">
+      <created>1683109467903</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1683109467903</updated>
+    </task>
+    <task id="LOCAL-00004" summary="openmp and rewriting">
+      <option name="closed" value="true" />
+      <created>1695678794774</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1695678794774</updated>
+    </task>
+    <task id="LOCAL-00005" summary="openmp and rewriting">
+      <option name="closed" value="true" />
+      <created>1695678988935</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1695678988935</updated>
+    </task>
+    <task id="LOCAL-00006" summary="openmp and rewriting">
+      <option name="closed" value="true" />
+      <created>1695712178267</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1695712178267</updated>
+    </task>
+    <task id="LOCAL-00007" summary="openmp and rewriting">
+      <option name="closed" value="true" />
+      <created>1695712192485</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1695712192485</updated>
+    </task>
+    <task id="LOCAL-00008" summary="finish bloomfilter openmp">
+      <option name="closed" value="true" />
+      <created>1695719730185</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1695719730185</updated>
+    </task>
+    <task id="LOCAL-00009" summary="finish bloomfilter openmp">
+      <option name="closed" value="true" />
+      <created>1695719779454</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1695719779454</updated>
+    </task>
+    <task id="LOCAL-00010" summary="finish bloomfilter openmp">
+      <option name="closed" value="true" />
+      <created>1695721598975</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1695721598975</updated>
+    </task>
+    <task id="LOCAL-00011" summary="finish bloomfilter openmp">
+      <option name="closed" value="true" />
+      <created>1696858910509</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1696858910509</updated>
+    </task>
+    <task id="LOCAL-00012" summary="rework finished omp bloomfilter">
+      <option name="closed" value="true" />
+      <created>1696859460514</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1696859460514</updated>
+    </task>
+    <task id="LOCAL-00013" summary="rework finished omp bloomfilter">
+      <option name="closed" value="true" />
+      <created>1696859750097</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1696859750097</updated>
+    </task>
+    <task id="LOCAL-00014" summary="rework finished omp bloomfilter">
+      <option name="closed" value="true" />
+      <created>1696859815504</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1696859815504</updated>
+    </task>
+    <task id="LOCAL-00015" summary="rework finished omp bloomfilter">
+      <option name="closed" value="true" />
+      <created>1696859828326</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1696859828326</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VCPKGProject">
+    <isAutomaticEditVcpkgJson value="false" />
+    <isAutomaticCheckingOnLaunch value="false" />
+    <isAutomaticFoundErrors value="true" />
+    <isAutomaticFoundErrors value="true" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="generate EmailGenerator.cpp" />
+    <MESSAGE value="initialize BloomFilter class" />
+    <MESSAGE value="first class BloomFilter with MultipleHashes in std::vector" />
+    <MESSAGE value="openmp and rewriting" />
+    <MESSAGE value="finish bloomfilter openmp" />
+    <MESSAGE value="rework finished omp bloomfilter" />
+    <option name="LAST_COMMIT_MESSAGE" value="rework finished omp bloomfilter" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/main.cpp</url>
+          <line>79</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
