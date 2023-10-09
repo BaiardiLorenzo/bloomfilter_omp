@@ -6,6 +6,14 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++23 -fopenmp")
 
 find_package(OpenMP REQUIRED)
 
-add_executable(bloomfilter_omp main.cpp BloomFilter.cpp BloomFilter.h MultiHashes.cpp MultiHashes.h MultiHashes.h)
+add_executable(bloomfilter_omp main.cpp
+        src/bloomfilter/BloomFilter.cpp
+        src/bloomfilter/BloomFilter.h
+        src/multihashes/MultiHashes.cpp
+        src/multihashes/MultiHashes.h
+        src/multihashes/MultiHashes.h
+        src/emailgenerator/EmailGenerator.cpp
+        src/emailgenerator/EmailGenerator.h
+        test.h)
 
 target_link_libraries(bloomfilter_omp OpenMP::OpenMP_CXX)
