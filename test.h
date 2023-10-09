@@ -1,0 +1,16 @@
+#ifndef BLOOMFILTER_OMP_TEST_H
+#define BLOOMFILTER_OMP_TEST_H
+
+#include <vector>
+
+#define RESULTS_FILENAME "../results/results.csv"
+
+// TESTS PARAMETERS
+#define N_TESTS 2
+#define START_TEST 1000
+#define END_TEST 1000000
+
+// BLOOM FILTER FILTER PARAMETERS
+#define FPR 0.01
+
+#endif //BLOOMFILTER_OMP_TEST_H
