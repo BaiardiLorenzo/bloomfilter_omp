@@ -48,43 +48,6 @@ def plot_csv_data(csv_filename):
     plt.show()
 
 
-"""def plot_results(results):
-    print(results)
-    plt.figure(figsize=(24, 8))
-
-    # Plot times
-    plt.subplot(1, 3, 1)
-    plt.plot(results[test_key], results[time_seq_key], marker='o', label='Sequential')
-    for i in test_threads:
-        plt.plot(results[test_key], results[time_par_key+str(i)], marker='o', label=f'Parallel {i} Threads')
-    plt.xlabel('Test Sizes')
-    plt.ylabel('Time (seconds)')
-    plt.title('Time vs. Test Sizes)')
-    plt.legend()
-
-    # Plot speedup
-    plt.subplot(1, 3, 2)
-    for i in test_threads:
-        plt.plot(results[test_key], results[speedup_key+str(i)], marker='o', label=f'Parallel {i} Threads')
-    plt.xlabel('Test Sizes')
-    plt.ylabel('Speedup')
-    plt.title('Speedup vs. Test Sizes')
-    plt.legend()
-
-    # Plot false positive rate
-    plt.subplot(1, 3, 3)
-    plt.plot(results[test_key], results[fpr_key], marker='o', label='False Positive Rate')
-    plt.xlabel('Test Sizes')
-    plt.ylabel('False Positive Rate')
-    plt.title('FPR vs. Test Sizes')
-    plt.legend()
-    
-    plt.tight_layout()
-    plt.savefig(plot_filename)
-    plt.show()
-"""
-
-
 def main():
     plot_csv_data(results_filename)
 
