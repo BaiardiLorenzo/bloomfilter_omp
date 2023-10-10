@@ -12,16 +12,18 @@ void headerResults(int nThreads){
         outfile << "test;tSeq;";
     for(int i=2; i<=nThreads; i+=2)
         outfile << "tPar" << i << ";speedUp" << i << ";";
-    outfile << "errors\n";
+    outfile << "errors" << ";fpr\n";
 }
 
-void exportResults(std::size_t test, double tSeq, const std::map<std::string, double>& tPars, std::map<std::string, double> speedUps, int errors, double fpr){
+void exportResults(std::size_t test, double tSeq, const std::map<std::size_t, double>& tPars, std::map<std::size_t, double> speedUps, int errors, double fpr){
     std::ofstream outfile;
     outfile.open(RESULTS_FILENAME, std::ios_base::app);
-    if(outfile.is_open())
-        for(auto &tPar: tPars)
-            outfile << test << ";" << tSeq << ";" << tPar.second << ";" << speedUps[tPar.first] << errors << ";" << fpr << "\n";
-    outfile.close();
+    if(outfile.is_open()){
+        outfile << test << ";" << tSeq << ";";
+        for(auto tPar: tPars)
+            outfile << tPar.second << ";" << speedUps[tPar.first] << ";";
+        outfile << errors << ";" << fpr << "\n";
+    }
 }
 
 std::vector<std::size_t> getTests(int nTest){
@@ -40,8 +42,6 @@ int main() {
     printf("**Number of cores/threads: %d**\n", omp_get_num_procs());
     omp_set_dynamic(0);
 #endif
-    EmailGenerator eg = EmailGenerator();
-    eg.generateEmails();
     headerResults(omp_get_num_procs());
     // TESTS PARAMETERS
     auto tests = getTests(N_TESTS);
@@ -58,19 +58,19 @@ int main() {
         double tSeq = bf.setup(emails, test);
         printf("Sequential time: %f\n", tSeq);
 
-        std::map<std::string, double> tPars;
-        std::map<std::string, double> speedUps;
+        std::map<std::size_t, double> tPars;
+        std::map<std::size_t, double> speedUps;
         for (int i=2; i<=omp_get_num_procs(); i+=2) {
             omp_set_num_threads(i);
 
             // TIME PARALLEL SETUP
             double tPar = bf.parallelSetup(emails, test);
-            tPars.insert(std::pair<std::string, double>(std::to_string(i), tPar));
+            tPars.insert(std::pair<std::size_t, double>(i, tPar));
             printf("Parallel time with %d threads: %f\n", i, tPar);
 
             // SPEEDUP
             double speedUp = tSeq / tPar;
-            speedUps.insert(std::pair<std::string, double>(std::to_string(i), speedUp));
+            speedUps.insert(std::pair<std::size_t, double>(i, speedUp));
             printf("Speedup with %d threads: %f\n", i, speedUp);
         }
 

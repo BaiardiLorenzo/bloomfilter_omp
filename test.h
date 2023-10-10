@@ -6,8 +6,8 @@
 #define RESULTS_FILENAME "../results/results.csv"
 
 // TESTS PARAMETERS
-#define N_TESTS 2
-#define START_TEST 1000
+#define N_TESTS 4
+#define START_TEST 10000
 #define END_TEST 1000000
 
 // BLOOM FILTER FILTER PARAMETERS

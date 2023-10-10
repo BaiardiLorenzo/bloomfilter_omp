@@ -6,7 +6,6 @@ std::string* EmailGenerator::importEmails(const char* filename, std::size_t nEma
     auto emails = new std::string[nEmails];
     std::ifstream infile;
     infile.open(filename);
-#pragma omp parallel for default(none) shared(infile, emails) firstprivate(nEmails)
     for(std::size_t i=0; i<nEmails; i++)
         std::getline(infile, emails[i]);
     infile.close();
