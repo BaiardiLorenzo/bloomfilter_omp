@@ -19,7 +19,7 @@ void BloomFilter::initialize(std::size_t nItems) {
         this->bits[i] = false;
 }
 
-double BloomFilter::setup(std::string items[], std::size_t nItems) {
+double BloomFilter::sequentialSetup(std::string items[], std::size_t nItems) {
     initialize(nItems);
     double start = omp_get_wtime();
     for(std::size_t i=0; i < nItems; i++)
@@ -42,7 +42,15 @@ void BloomFilter::add(const std::string& items) {
         this->bits[mh()] = true;
 }
 
-int BloomFilter::filterAll(std::string items[], size_t nItems) {
+int BloomFilter::sequentialFilterAll(std::string items[], size_t nItems) {
+    int error = 0;
+    for(std::size_t i=0; i < nItems; i++)
+        if(filter(items[i]))
+            error++;
+    return error;
+}
+
+int BloomFilter::parallelFilterAll(std::string items[], size_t nItems) {
     int error = 0;
 #pragma omp parallel for default(none) shared(items, error) firstprivate(nItems)
     for(std::size_t i=0; i < nItems; i++)

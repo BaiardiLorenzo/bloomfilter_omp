@@ -12,10 +12,6 @@
 #define EMAILS_FILENAME "../dataset/emails.txt"
 #define SPAMS_FILENAME "../dataset/spams.txt"
 
-// NUMBER OF EMAILS TO TEST
-#define N_EMAILS 10000000
-#define N_SPAM_EMAILS 100000
-
 class EmailGenerator {
 
 public:
