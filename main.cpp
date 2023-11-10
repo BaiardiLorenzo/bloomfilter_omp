@@ -3,6 +3,7 @@
 #include "test.h"
 #include <fstream>
 #include <map>
+#include <iomanip>
 
 
 void headerResults(const std::string& filename, int nThreads){
@@ -12,7 +13,7 @@ void headerResults(const std::string& filename, int nThreads){
         outfile << "test;tSeq;";
     for(int i=2; i<=nThreads; i+=2)
         outfile << "tPar" << i << ";speedUp" << i << ";";
-    outfile << "fpr\n";
+    outfile << "fpr;\n";
 }
 
 void exportResults(const std::string& filename, std::size_t test, double tSeq, const std::map<std::size_t, double>& tPars,
@@ -20,6 +21,7 @@ void exportResults(const std::string& filename, std::size_t test, double tSeq, c
     std::ofstream outfile;
     outfile.open(filename, std::ios_base::app);
     if(outfile.is_open()){
+        outfile << std::fixed << std::setprecision(3);
         outfile << test << ";" << tSeq << ";";
         for(auto tPar: tPars)
             outfile << tPar.second << ";" << speedUps[tPar.first] << ";";
