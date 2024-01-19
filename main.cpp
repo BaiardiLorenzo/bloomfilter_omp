@@ -38,24 +38,10 @@ std::vector<std::size_t> getTests(int nTest, int start, int end){
     return tests;
 }
 
-int main() {
-#ifdef _OPENMP
-    printf("**Number of cores/threads: %d**\n", omp_get_num_procs());
-    omp_set_dynamic(0);
-#endif
-    if (GENERATE_EMAILS) {
-        printf("Generating emails...\n");
-        EmailGenerator eg = EmailGenerator();
-        eg.generateEmails();
-    }
-
-    // INITIALIZATION OF BLOOM FILTER
-    BloomFilter bf = BloomFilter();
-
-    // TESTS PARAMETERS
+void testSetup(BloomFilter bf) {
     printf("TEST SETUP\n");
     headerResults(SETUP_FILENAME, omp_get_num_procs());
-    auto tests = getTests(N_TESTS, START_TEST, N_EMAILS);
+    auto tests = getTests(N_TESTS, START_TEST, 10000);
     for (auto test: tests) {
         printf("TEST: %llu\n", test);
 
@@ -65,6 +51,8 @@ int main() {
         // TIME SEQUENTIAL SETUP
         double tSeq = bf.sequentialSetup(emails, test);
         printf("Sequential time: %f\n", tSeq);
+
+        bool* seq_bits = bf.getBits();
 
         std::map<std::size_t, double> tPars;
         std::map<std::size_t, double> speedUps;
@@ -76,18 +64,25 @@ int main() {
             tPars.insert(std::pair<std::size_t, double>(i, tPar));
             printf("Parallel time with %d threads: %f\n", i, tPar);
 
+            bool* par_bits = bf.getBits();
+
             // SPEEDUP
             double speedUp = tSeq / tPar;
             speedUps.insert(std::pair<std::size_t, double>(i, speedUp));
             printf("Speedup with %d threads: %f\n", i, speedUp);
+
+            // CHEKING ARRAYS
+            if(*seq_bits != *par_bits)
+                printf("******ERROR: BIT_Arrays are not equal\n");
         }
 
         // DELETE ARRAY DYNAMIC ALLOCATED
         delete[] emails;
 
+
         // FPR FILTER TEST
         auto fprSpamEmails = EmailGenerator::importEmails(SPAMS_FILENAME, TEST_FPR);
-        int errors = bf.parallelFilterAll(fprSpamEmails, TEST_FPR);
+        int errors = bf.parallelFilterAll1(fprSpamEmails, TEST_FPR);
         double fpr = (double)errors / TEST_FPR;
         printf("Errors: %d with FPR: %f\n\n", errors, fpr);
 
@@ -97,12 +92,15 @@ int main() {
         // WRITE RESULT
         exportResults(SETUP_FILENAME, test, tSeq, tPars, speedUps, fpr);
     }
+}
 
-
-    // TESTING SPAM EMAIL
+void testFiltering(BloomFilter bf){
     printf("TEST FILTER\n");
     headerResults(FILTER_FILENAME, omp_get_num_procs());
-    tests = getTests(N_TESTS, START_TEST, N_SPAM_EMAILS);
+    auto emails = EmailGenerator::importEmails(EMAILS_FILENAME, N_EMAILS);
+    bf.sequentialSetup(emails, 10000);
+
+    auto tests = getTests(N_TESTS, START_TEST, N_SPAM_EMAILS);
     for (auto test: tests) {
         printf("TEST: %llu\n", test);
 
@@ -122,7 +120,7 @@ int main() {
 
             // TIME PARALLEL FILTER
             start = omp_get_wtime();
-            int parErrors = bf.parallelFilterAll(spamEmails, test);
+            int parErrors = bf.parallelFilterAll1(spamEmails, test);
             auto tPar = omp_get_wtime() - start;
             tPars.insert(std::pair<std::size_t, double>(i, tPar));
             printf("Parallel time filter with %d threads: %f\n", i, tPar);
@@ -146,6 +144,28 @@ int main() {
         // WRITE RESULT
         exportResults(FILTER_FILENAME, test, tSeq, tPars, speedUps, fpr);
     }
+}
+
+int main() {
+#ifdef _OPENMP
+    printf("**Number of cores/threads: %d**\n", omp_get_num_procs());
+    omp_set_dynamic(0);
+#endif
+    if (GENERATE_EMAILS) {
+        printf("Generating emails...\n");
+        EmailGenerator eg = EmailGenerator();
+        eg.generateEmails();
+    }
+
+    // INITIALIZATION OF BLOOM FILTER
+    BloomFilter bf = BloomFilter();
+
+    // TESTS SETUP
+    testSetup(bf);
+
+    // TESTING FILTERING
+    testFiltering(bf);
+
     return 0;
 }
 

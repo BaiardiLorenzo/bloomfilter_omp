@@ -13,10 +13,11 @@ class BloomFilter {
 public:
     explicit BloomFilter(double fpr=FPR);
     ~BloomFilter();
+    bool *getBits() const;
     double sequentialSetup(std::string items[], std::size_t nItems);
     double parallelSetup(std::string items[], std::size_t nItems);
     int sequentialFilterAll(std::string items[], size_t nItems);
-    int parallelFilterAll(std::string items[], size_t nItems);
+    int parallelFilterAll1(std::string items[], size_t nItems);
 
 private:
     double fpr;

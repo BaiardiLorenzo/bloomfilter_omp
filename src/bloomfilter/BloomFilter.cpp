@@ -30,9 +30,19 @@ double BloomFilter::sequentialSetup(std::string items[], std::size_t nItems) {
 double BloomFilter::parallelSetup(std::string items[], std::size_t nItems) {
     initialize(nItems);
     double start = omp_get_wtime();
-#pragma omp parallel for default(none) shared(bits, items) firstprivate(nItems, nHashes)
-    for(std::size_t i=0; i < nItems; i++)
-        add(items[i]);
+#pragma omp parallel default(none) shared(bits, items) firstprivate(nItems, nHashes)
+    {
+#pragma omp for
+        for(std::size_t i=0; i < nItems; i++) {
+            MultiHashes mh(this->size, items[i]);
+            for (std::size_t h = 0; h < nHashes; h++) {
+                std::size_t index = mh();
+#pragma omp critical
+                this->bits[index] = true;
+            }
+        }
+    }
+#pragma omp barrier
     return omp_get_wtime() - start;
 }
 
@@ -50,25 +60,33 @@ int BloomFilter::sequentialFilterAll(std::string items[], size_t nItems) {
     return error;
 }
 
-int BloomFilter::parallelFilterAll(std::string items[], size_t nItems) {
+int BloomFilter::parallelFilterAll1(std::string items[], size_t nItems) {
     int error = 0;
-#pragma omp parallel for default(none) shared(items, error) firstprivate(nItems)
-    for(std::size_t i=0; i < nItems; i++)
-        if(filter(items[i]))
-            error++;
+#pragma omp parallel default(none) shared(items, error) firstprivate(nItems)
+    {
+#pragma omp for
+        for (std::size_t i = 0; i < nItems; i++)
+            if (filter(items[i]))
+#pragma omp atomic
+                error++;
+    }
     return error;
 }
 
 bool BloomFilter::filter(const std::string& email) {
     MultiHashes mh(this->size, email);
     for(std::size_t i=0; i < nHashes; i++)
-        if(!this->bits[mh()]) return false; // SPAM = 0
-    return true; // VALID = 1
+        if(!this->bits[mh()]) return false; // SPAM
+    return true; // VALID
 }
 
 
 BloomFilter::~BloomFilter() {
     this->reset();
+}
+
+bool *BloomFilter::getBits() const {
+    return bits;
 }
 
 
