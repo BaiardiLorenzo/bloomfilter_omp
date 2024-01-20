@@ -41,7 +41,7 @@ std::vector<std::size_t> getTests(int nTest, int start, int end){
 void testSetup(BloomFilter bf) {
     printf("TEST SETUP\n");
     headerResults(SETUP_FILENAME, omp_get_num_procs());
-    auto tests = getTests(N_TESTS, START_TEST, 10000);
+    auto tests = getTests(N_TESTS, START_TEST, N_EMAILS);
     for (auto test: tests) {
         printf("TEST: %llu\n", test);
 
