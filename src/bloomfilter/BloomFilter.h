@@ -18,6 +18,7 @@ public:
     double parallelSetup(std::string items[], std::size_t nItems);
     int sequentialFilterAll(std::string items[], size_t nItems);
     int parallelFilterAll1(std::string items[], size_t nItems);
+    int parallelFilterAll2(std::string items[], size_t nItems);
 
 private:
     double fpr;

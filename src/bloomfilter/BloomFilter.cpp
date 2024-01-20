@@ -65,11 +65,29 @@ int BloomFilter::parallelFilterAll1(std::string items[], size_t nItems) {
 #pragma omp parallel default(none) shared(items, error) firstprivate(nItems)
     {
 #pragma omp for
-        for (std::size_t i = 0; i < nItems; i++)
+        for (std::size_t i = 0; i < nItems; i++) {
             if (filter(items[i]))
 #pragma omp atomic
                 error++;
+        }
     }
+    return error;
+}
+
+int BloomFilter::parallelFilterAll2(std::string items[], size_t nItems) {
+    int error = 0;
+    int threadError = 0;
+#pragma omp parallel default(none) shared(items, error) firstprivate(nItems, threadError)
+    {
+#pragma omp for
+        for (std::size_t i = 0; i < nItems; i++) {
+            if (filter(items[i]))
+                threadError++;
+        }
+#pragma omp critical
+        error += threadError;
+    }
+#pragma omp barrier
     return error;
 }
 
