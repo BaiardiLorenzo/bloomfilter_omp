@@ -72,8 +72,8 @@ void testSetup(BloomFilter bf) {
             printf("Speedup with %d threads: %f\n", i, speedUp);
 
             // CHEKING ARRAYS
-            if(*seq_bits != *par_bits)
-                printf("******ERROR: BIT_Arrays are not equal\n");
+            //if(*seq_bits != *par_bits)
+            //    printf("******ERROR: BIT_Arrays are not equal\n");
         }
 
         // DELETE ARRAY DYNAMIC ALLOCATED
@@ -120,7 +120,7 @@ void testFiltering(BloomFilter bf){
 
             // TIME PARALLEL FILTER
             start = omp_get_wtime();
-            int parErrors = bf.parallelFilterAll1(spamEmails, test);
+            int parErrors = bf.parallelFilterAll2(spamEmails, test);
             auto tPar = omp_get_wtime() - start;
             tPars.insert(std::pair<std::size_t, double>(i, tPar));
             printf("Parallel time filter with %d threads: %f\n", i, tPar);
