@@ -17,6 +17,22 @@ void headerResults(const std::string& filename, int nThreads){
 }
 
 void exportResults(const std::string& filename, std::size_t test, double tSeq, const std::map<std::size_t, double>& tPars,
+                   std::map<std::size_t,double> speedUps, const std::map<std::size_t, double>& tPars2,
+                   std::map<std::size_t,double> speedUps2, double fpr){
+    std::ofstream outfile;
+    outfile.open(filename, std::ios_base::app);
+    if(outfile.is_open()){
+        outfile << std::fixed << std::setprecision(3);
+        outfile << test << ";" << tSeq << ";";
+        for(auto tPar: tPars)
+            outfile << tPar.second << ";" << speedUps[tPar.first] << ";";
+        for(auto tPar: tPars2)
+            outfile << tPar.second << ";" << speedUps2[tPar.first] << ";";
+        outfile << fpr << ";\n";
+    }
+}
+
+void exportResults(const std::string& filename, std::size_t test, double tSeq, const std::map<std::size_t, double>& tPars,
                    std::map<std::size_t,double> speedUps, double fpr){
     std::ofstream outfile;
     outfile.open(filename, std::ios_base::app);
@@ -79,7 +95,6 @@ void testSetup(BloomFilter bf) {
         // DELETE ARRAY DYNAMIC ALLOCATED
         delete[] emails;
 
-
         // FPR FILTER TEST
         auto fprSpamEmails = EmailGenerator::importEmails(SPAMS_FILENAME, TEST_FPR);
         int errors = bf.parallelFilterAll1(fprSpamEmails, TEST_FPR);
@@ -114,13 +129,15 @@ void testFiltering(BloomFilter bf){
         printf("Sequential time filter: %f\n", tSeq);
 
         std::map<std::size_t, double> tPars;
+        std::map<std::size_t, double> tPars2;
         std::map<std::size_t, double> speedUps;
+        std::map<std::size_t, double> speedUps2;
         for (int i=2; i<=omp_get_num_procs(); i+=2) {
             omp_set_num_threads(i);
 
             // TIME PARALLEL FILTER
             start = omp_get_wtime();
-            int parErrors = bf.parallelFilterAll2(spamEmails, test);
+            int parErrors = bf.parallelFilterAll1(spamEmails, test);
             auto tPar = omp_get_wtime() - start;
             tPars.insert(std::pair<std::size_t, double>(i, tPar));
             printf("Parallel time filter with %d threads: %f\n", i, tPar);
@@ -133,6 +150,23 @@ void testFiltering(BloomFilter bf){
             double speedUp = tSeq / tPar;
             speedUps.insert(std::pair<std::size_t, double>(i, speedUp));
             printf("Speedup filter with %d threads: %f\n", i, speedUp);
+
+
+            // TIME PARALLEL FILTER 2
+            start = omp_get_wtime();
+            int parErrors2 = bf.parallelFilterAll2(spamEmails, test);
+            auto tPar2 = omp_get_wtime() - start;
+            tPars2.insert(std::pair<std::size_t, double>(i, tPar2));
+            printf("Parallel time filter TYPE2 with %d threads: %f\n", i, tPar2);
+
+            // CHECKING ERRORS 2
+            if (seqErrors != parErrors2)
+                printf("******ERROR: sequential errors: %d, parallel TYPE2 errors: %d\n", seqErrors, parErrors2);
+
+            // SPEEDUP 2
+            double speedUp2 = tSeq / tPar2;
+            speedUps2.insert(std::pair<std::size_t, double>(i, speedUp2));
+            printf("Speedup filter with %d threads: %f\n", i, speedUp2);
         }
         // DELETE ARRAY DYNAMIC ALLOCATED
         delete[] spamEmails;
@@ -142,7 +176,7 @@ void testFiltering(BloomFilter bf){
         printf("Errors: %d with FPR: %f\n\n", seqErrors, fpr);
 
         // WRITE RESULT
-        exportResults(FILTER_FILENAME, test, tSeq, tPars, speedUps, fpr);
+        exportResults(FILTER_FILENAME, test, tSeq, tPars, speedUps, tPars2, speedUps2, fpr);
     }
 }
 
