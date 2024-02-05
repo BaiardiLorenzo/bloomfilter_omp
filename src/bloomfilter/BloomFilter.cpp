@@ -42,7 +42,6 @@ double BloomFilter::parallelSetup(std::string items[], std::size_t nItems) {
             }
         }
     }
-#pragma omp barrier
     return omp_get_wtime() - start;
 }
 
