@@ -38,7 +38,7 @@ def plot():
         # Plot FPR
         plt.figure()
         plt.title('Setup: False Positive Rate')
-        plt.plot(df['test'], df['fpr'], '-o', label='Sequential')
+        plt.plot(df['test'], df['fpr'], '-o')
         plt.xlabel('Selected emails')
         plt.ylabel('FPR')
         plt.tight_layout()
@@ -103,7 +103,7 @@ def plot():
         # Plot FPR
         plt.figure()
         plt.title('Filter: False Positive Rate')
-        plt.plot(df['test'], df['fpr'], '-o', label='Sequential')
+        plt.plot(df['test'], df['fpr'], '-o')
         plt.xlabel('Selected emails')
         plt.ylabel('FPR')
         plt.legend()
