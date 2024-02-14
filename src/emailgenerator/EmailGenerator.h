@@ -9,8 +9,8 @@
 #include <random>
 #include <ctime>
 
-#define EMAILS_FILENAME "../dataset/emails.txt"
-#define SPAMS_FILENAME "../dataset/spams.txt"
+#define EMAILS_FILENAME "../dataset/emails-10000000.txt"
+#define SPAMS_FILENAME "../dataset/spams-10000000.txt"
 
 class EmailGenerator {
 

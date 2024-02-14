@@ -4,9 +4,10 @@ import matplotlib.pyplot as plt
 
 def plot():
     # Read the setup.csv file
-    fprs = ['001', '005', '010']
+    # fprs = ['001', '005', '010']
+    fprs = ['005']
     for fpr in fprs:
-        df = pd.read_csv('./results/openmp/'+fpr+'/setup.csv', sep=';')
+        df = pd.read_csv('./results/csv/setup.csv', sep=';')
 
         tests = [2, 4, 6, 8, 10, 12, 14, 16]
         # Plot execution times
@@ -20,7 +21,7 @@ def plot():
         plt.tight_layout()
         plt.legend()
         plt.grid()
-        plt.savefig('./results/openmp/'+str(fpr)+'/setup_times.png')
+        plt.savefig('./results/csv/setup_times.png')
 
         # Plot speedup
         plt.figure()
@@ -33,21 +34,21 @@ def plot():
         plt.legend()
         plt.tight_layout()
         plt.grid()
-        plt.savefig('./results/openmp/'+str(fpr)+'/setup_speedup.png')
+        plt.savefig('./results/csv/setup_speedup.png')
 
         # Plot FPR
         plt.figure()
         plt.title('Setup: False Positive Rate')
-        plt.plot(df['test'], df['fpr'], '-o')
+        plt.plot(df['test'], df['fpr'], '-o', label='Sequential')
         plt.xlabel('Selected emails')
         plt.ylabel('FPR')
         plt.tight_layout()
         plt.legend()
         plt.grid()
-        plt.savefig('./results/openmp/'+str(fpr)+'/setup_fpr.png')
+        plt.savefig('./results/csv/setup_fpr.png')
 
         # Read the filter.csv file
-        df = pd.read_csv('./results/openmp/'+str(fpr)+'/filter.csv', sep=';')
+        df = pd.read_csv('./results/csv/filter.csv', sep=';')
 
         tests = [2, 4, 6, 8, 10, 12, 14, 16]
         # Plot execution times Filter1
@@ -61,7 +62,7 @@ def plot():
         plt.legend()
         plt.grid()
         plt.tight_layout()
-        plt.savefig('./results/openmp/'+str(fpr)+'/filter1_times.png')
+        plt.savefig('./results/csv/filter1_times.png')
 
         # Plot speedup Filter1
         plt.figure()
@@ -74,7 +75,7 @@ def plot():
         plt.legend()
         plt.grid()
         plt.tight_layout()
-        plt.savefig('./results/openmp/'+str(fpr)+'/filter1_speedup.png')
+        plt.savefig('./results/csv/filter1_speedup.png')
 
         plt.figure()
         plt.title('Filter2: Execution times')
@@ -86,7 +87,7 @@ def plot():
         plt.legend()
         plt.grid()
         plt.tight_layout()
-        plt.savefig('./results/openmp/'+str(fpr)+'/filter2_times.png')
+        plt.savefig('./results/csv/filter2_times.png')
 
         plt.figure()
         plt.title('Filter2: Speedup')
@@ -98,18 +99,18 @@ def plot():
         plt.legend()
         plt.grid()
         plt.tight_layout()
-        plt.savefig('./results/openmp/'+str(fpr)+'/filter2_speedup.png')
+        plt.savefig('./results/csv/filter2_speedup.png')
 
         # Plot FPR
         plt.figure()
         plt.title('Filter: False Positive Rate')
-        plt.plot(df['test'], df['fpr'], '-o')
+        plt.plot(df['test'], df['fpr'], '-o', label='Sequential')
         plt.xlabel('Selected emails')
         plt.ylabel('FPR')
         plt.legend()
         plt.grid()
         plt.tight_layout()
-        plt.savefig('./results/openmp/'+str(fpr)+'/filter_fpr.png')
+        plt.savefig('./results/csv/filter_fpr.png')
 
 
 if __name__ == '__main__':
